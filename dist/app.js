@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
+const dotenv_1 = __importDefault(require("dotenv"));
+const imagesRouter_1 = __importDefault(require("./routes/imagesRouter"));
+const errorMW_1 = __importDefault(require("./middlewares/errorMW"));
+const notFoundMW_1 = __importDefault(require("./middlewares/notFoundMW"));
+dotenv_1.default.config();
+const port = process.env.PORT || 5000;
+const app = (0, express_1.default)();
+app.use((0, cors_1.default)());
+app.use(express_1.default.static("assets"));
+app.use(imagesRouter_1.default);
+app.use(notFoundMW_1.default);
+app.use(errorMW_1.default);
+app.listen(port, () => console.log(`Server running on port ${port}`));
+exports.default = app;
