@@ -1,4 +1,5 @@
 "use strict";
+// This code is copied from Jasmine Documentation
 Object.defineProperty(exports, "__esModule", { value: true });
 const jasmine_spec_reporter_1 = require("jasmine-spec-reporter");
 class CustomProcessor extends jasmine_spec_reporter_1.DisplayProcessor {

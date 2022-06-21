@@ -15,20 +15,22 @@ const positionOptions = [
   "left-top",
 ];
 
-const checkImageExists = (req: Request, res: Response, next: NextFunction) => {
+const checkImageExists = (req: Request, res: Response, next: NextFunction): void => {
   fs.readdir(imagesFolder, (err, files) => {
     const img = files.find((image) => req.query.filename === image);
+    // console.log(img)
     if (img) {
       next();
     } else {
       res.status(400);
       const error = new Error("Image not found");
+      // throw error
       next(error);
     }
   });
 };
 
-const validator = (req: Request, res: Response, next: NextFunction) => {
+const validator = (req: Request, res: Response, next: NextFunction): void => {
   const result = validationResult(req);
   if (!result.isEmpty()) {
     const message = result
@@ -45,7 +47,6 @@ const imageValidation = [
   query("filename")
     .exists({ checkFalsy: true })
     .withMessage("filename must be included"),
-  checkImageExists,
   query("width")
     .isInt({ min: 10, max: 1000 })
     .withMessage("width must be numeric"),
@@ -63,6 +64,8 @@ const imageValidation = [
       "position must be in (top, right-top, right, right-bottom, bottom, left-bottom, left, left-top)"
     ),
   validator,
+  checkImageExists,
+
 ];
 
 export default imageValidation;

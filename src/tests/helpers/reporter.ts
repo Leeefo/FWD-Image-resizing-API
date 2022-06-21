@@ -1,3 +1,5 @@
+// This code is copied from Jasmine Documentation
+
 import {
   DisplayProcessor,
   SpecReporter,

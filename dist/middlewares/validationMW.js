@@ -20,12 +20,14 @@ const positionOptions = [
 const checkImageExists = (req, res, next) => {
     fs_1.default.readdir(imagesFolder, (err, files) => {
         const img = files.find((image) => req.query.filename === image);
+        // console.log(img)
         if (img) {
             next();
         }
         else {
             res.status(400);
             const error = new Error("Image not found");
+            // throw error
             next(error);
         }
     });
@@ -47,7 +49,6 @@ const imageValidation = [
     (0, express_validator_1.query)("filename")
         .exists({ checkFalsy: true })
         .withMessage("filename must be included"),
-    checkImageExists,
     (0, express_validator_1.query)("width")
         .isInt({ min: 10, max: 1000 })
         .withMessage("width must be numeric"),
@@ -63,5 +64,6 @@ const imageValidation = [
         .isIn(positionOptions)
         .withMessage("position must be in (top, right-top, right, right-bottom, bottom, left-bottom, left, left-top)"),
     validator,
+    checkImageExists,
 ];
 exports.default = imageValidation;

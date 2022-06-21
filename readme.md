@@ -73,6 +73,8 @@ This is an example of how to list things you need to use the software and how to
    ```
 
 
+## [check it out](http://localhost:8080/images?width=500&height=400&filename=palmtunnel.jpg)
+
 
 
 
