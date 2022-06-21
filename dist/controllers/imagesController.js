@@ -35,7 +35,7 @@ const getImages = (req, res, next) => __awaiter(void 0, void 0, void 0, function
                     width: width,
                     height: height,
                     fit: fit,
-                    position
+                    position,
                 };
                 const fileOptions = {
                     filename: filename,

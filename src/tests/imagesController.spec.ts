@@ -3,7 +3,7 @@ import app from "./../app";
 
 const request = supertest(app);
 
-xdescribe("Testing the images endpont", () => {
+describe("Testing the images endpont", () => {
   it("checking for normal behavior 200", async () => {
     const res = await request.get(
       "/images?filename=fjord.jpg&width=200&height=300"

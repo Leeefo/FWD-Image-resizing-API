@@ -17,8 +17,9 @@ export const getImages = async (
   const position = (req.query.position as string) || "centre".replace("-", " ");
 
   try {
-    const thumbName = `${width}_${height}_${fit || "cover"}_${req.query.position || "centre"
-      }_${filename}`;
+    const thumbName = `${width}_${height}_${fit || "cover"}_${
+      req.query.position || "centre"
+    }_${filename}`;
 
     fs.readdir(thumbsFolder, async (err, files) => {
       const img = files.find((image) => thumbName === image);
@@ -37,20 +38,18 @@ export const getImages = async (
         console.log(`Cahche miss -> Generating thumb ${thumbName}`);
 
         const resizeOptions: ResizeOptions = {
-          width: (width as string),
-          height: (height as string),
-          fit: (fit as keyof sharp.FitEnum | undefined),
-          position
-
-        }
+          width: width as string,
+          height: height as string,
+          fit: fit as keyof sharp.FitEnum | undefined,
+          position,
+        };
         const fileOptions: FileOptions = {
-          filename: (filename as string),
-          thumbName: (thumbName as string),
-          thumbsFolder: (thumbsFolder as string),
-        }
-        await imageResize(resizeOptions, fileOptions)
-        return res.status(200).sendFile(path.join(thumbsFolder, thumbName))
-
+          filename: filename as string,
+          thumbName: thumbName as string,
+          thumbsFolder: thumbsFolder as string,
+        };
+        await imageResize(resizeOptions, fileOptions);
+        return res.status(200).sendFile(path.join(thumbsFolder, thumbName));
       }
     });
   } catch (error) {

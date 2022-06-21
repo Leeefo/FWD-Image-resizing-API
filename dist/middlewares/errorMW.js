@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const errorMW = (err, req, res, next) => {
+const errorMW = (err, req, res, _next) => {
     const statusCode = res.statusCode ? res.statusCode : 500;
     res.status(statusCode);
     res.json({

@@ -21,7 +21,7 @@ describe("Image Resize Process", () => {
         width: "500",
         height: "500",
         fit: "cover",
-        position: undefined
+        position: undefined,
     };
     const fileOptions = {
         filename,
@@ -32,7 +32,7 @@ describe("Image Resize Process", () => {
     const cleanThumbsFolder = () => {
         (0, fs_1.unlinkSync)(fullPath);
     };
-    // afterEach(cleanThumbsFolder)
+    afterEach(cleanThumbsFolder);
     beforeEach(() => (0, fs_1.existsSync)(fullPath) && cleanThumbsFolder());
     it("Should return image with the specified dimensions", () => __awaiter(void 0, void 0, void 0, function* () {
         const outputInfo = yield (0, imageResize_1.default)(resizeOptions, fileOptions);

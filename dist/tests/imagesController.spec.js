@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const app_1 = __importDefault(require("./../app"));
 const request = (0, supertest_1.default)(app_1.default);
-xdescribe("Testing the images endpont", () => {
+describe("Testing the images endpont", () => {
     it("checking for normal behavior 200", () => __awaiter(void 0, void 0, void 0, function* () {
         const res = yield request.get("/images?filename=fjord.jpg&width=200&height=300");
         expect(res.statusCode).toEqual(200);

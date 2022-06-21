@@ -15,7 +15,11 @@ const positionOptions = [
   "left-top",
 ];
 
-const checkImageExists = (req: Request, res: Response, next: NextFunction): void => {
+const checkImageExists = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
   fs.readdir(imagesFolder, (err, files) => {
     const img = files.find((image) => req.query.filename === image);
     // console.log(img)
@@ -65,7 +69,6 @@ const imageValidation = [
     ),
   validator,
   checkImageExists,
-
 ];
 
 export default imageValidation;

@@ -19,7 +19,7 @@ const imageResize = ({ width, height, fit, position }, { filename, thumbName, th
     const outputInfo = yield (0, sharp_1.default)(path_1.default.join("assets", "full", filename))
         .resize(parseInt(width), parseInt(height), {
         fit,
-        position
+        position,
     })
         .toFile(fullPath);
     return outputInfo;
